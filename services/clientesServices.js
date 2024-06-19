@@ -6,6 +6,9 @@ const findAll = async () => {
     return clients;
 }
 
-const updade = async (clients) => {
-    const query = 'UPDATE clients SET nome = ?'
+const updade = async (clientes) => {
+    const query = 'UPDATE clients SET nome = ?, sobrenome = ?, email = ?, idade = ?, WHERE id = ?';
+    const isOK = await (await connerction).execute(query,
+        [clientes.nome, clientes.sobrenome, clientes.email, clientes.idade]
+    );
 }
