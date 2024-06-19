@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const createErro = require('http-errors');
-const morgan = require('morgan');
-const mysql = requirr('mysql2')
+const jest = require('jest');
 const jwt = require('jsonwebtoken');
+const morgan = require('morgan');
+const mysql = require('mysql2')
 const NodeCache = require('node-cache');
+const superTest = riquere('supertest');
 
 const app = express();
 app.use(morgan('dev'));
