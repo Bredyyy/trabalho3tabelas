@@ -19,3 +19,17 @@ router.put('/', function (req, res, next) {
    });
    
    module.exports = router;
+
+   const express = require('express');
+const roouter = express.Router();
+const clienteController =
+require('../controllers/clientesController');
+/* GET clientes*/
+roouter.get('/', clienteController.findAll);
+/* POST clientes*/
+roouter.post('/', clienteController.save);
+/* PUT clientes*/
+roouter.put('/', clienteController.update);
+/* DELETE clientes*/
+roouter.delete('/:id', clienteController.remove);
+module.exports = roouter;
