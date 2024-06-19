@@ -23,9 +23,9 @@ const cache = new NodeCache({ stdTTL: 30});
 app.set('views', './views');
 app.set('view engine', 'jade');
 app.use('/', require('../routes/index'));
-app.use('/clients', require('../routes/clients'));
-app.use('/product', require('../routes/product'));
-app.use('/users', require('../routes/users'));
+app.use('/clientes', require('../routes/clientes'));
+app.use('/produtos', require('../routes/produtos'));
+app.use('/usuarios', require('../routes/usuarios'));
 app.use((req, res, next) => {
     next(createErro(404));
 });
