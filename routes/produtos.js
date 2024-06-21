@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const produtosController = require('../controllers/produtosController');
-const nomeMiddleware = require('../middlewares/nomeMiddleware');
-const descricaoMiddleware = require('../middlewares/descricaoMiddleware');
-const precoMiddleware = require('../middlewares/precoMiddleware');
+const produtosController = require('../../controllers/produtosController');
+const nomeMiddleware = require('../../middlewares/nomeMiddleware');
+const descricaoMiddleware = require('../../middlewares/descricaoMiddleware');
+const precoMiddleware = require('../../middlewares/precoMiddleware');
 
 /* GET produtos*/
 router.get('/', function (req, res, next) {

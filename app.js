@@ -29,9 +29,9 @@ const bd = mysql.createPoll({
 app.set('views', './views');
 app.set('view engine', 'jade');
 app.use('/', require('../routes/index'));
-app.use('/clientes', require('../routes/clientes'));
-app.use('/produtos', require('../routes/produtos'));
-app.use('/usuarios', require('../routes/usuarios'));
+app.use('/clientes', require('./routes/clientes'));
+app.use('/produtos', require('./routes/produtos'));
+app.use('/usuarios', require('./routes/usuarios'));
 app.use((req, res, next) => {
     next(createErro(404));
 });
@@ -46,5 +46,5 @@ const jwt = require('jsonwebtoken');
 const morgan = require('morgan');
 const mysql = require('mysql2')
 const NodeCache = require('node-cache');
-const superTest = riquere('supertest');
+//const superTest = riquere('supertest');
 const cache = new NodeCache({ stdTTL: 30});

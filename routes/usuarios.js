@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const usuarioController = require('../controllers/usuariosController');
-const usuarioMiddleware = require('../middlewares/usuarioMiddleware');
-const senhaMiddleware = require('../middlewares/senhaMiddleware');
+const usuarioController = require('../../controllers/usuariosController');
+const usuarioMiddleware = require('../../middlewares/usuarioMiddleware');
+const senhaMiddleware = require('../../middlewares/senhaMiddleware');
 
 /* GET usuarios*/
 router.get('/', function (req, res, next) {

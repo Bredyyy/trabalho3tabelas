@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const clienteController = require('../controllers/clientesController');
-const nomeMiddleware = require('../middlewares/nomeMiddleware');
-const sobrenomeMiddleware = require('../middlewares/sobrenomeMiddleware');
-const idadeMiddleware = require('../middlewares/idadeMiddleware');
+const clienteController = require('../../controllers/clientesController');
+const nomeMiddleware = require('../../middlewares/nomeMiddleware');
+const sobrenomeMiddleware = require('../../middlewares/sobrenomeMiddleware');
+const idadeMiddleware = require('../../middlewares/idadeMiddleware');
 
 /* GET clientes*/
 router.get('/', function (req, res, next) {
