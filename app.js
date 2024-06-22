@@ -7,14 +7,19 @@ const morgan = require('morgan');
 const mysql = require('mysql2')
 const NodeCache = require('node-cache');
 const superTest = riquere('supertest');
+
 const usersRouter = require('./routes/usuarios');
 const clientesRouter = require('./routes/clientes');
 const productsRouter = require('./routers/produtos');
-//...
+
 const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(jest('dev'));
+app.use(jwt('dev'));
+app.use(NodeCache('dev'));
+app.use(superTest('dev'));
 app.use('/usuarios', usersRouter);
 app.use('/clientes', clientesRouter);
 app.use('/produtos', productsRouter);
@@ -38,13 +43,3 @@ app.use((req, res, next) => {
 
 module.exports = app;
 
-require('dotenv').config();
-const express = require('express');
-const createErro = require('http-errors');
-const jest = require('jest');
-const jwt = require('jsonwebtoken');
-const morgan = require('morgan');
-const mysql = require('mysql2')
-const NodeCache = require('node-cache');
-//const superTest = riquere('supertest');
-const cache = new NodeCache({ stdTTL: 30});

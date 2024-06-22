@@ -10,4 +10,4 @@ const validateDescricao = (request, response, next) => {
     }
     next();
    };
-   module.exports = { validateDescricao };
+module.exports = { validateDescricao };

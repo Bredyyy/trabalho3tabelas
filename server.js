@@ -8,3 +8,5 @@ const express = require('express')
  app.listen(port, () => {
     console.log(`Aplicação exemplo rodando em http://localhost:${port}`)
  })
+
+ //Aplicação exemplo rodando em http://localhost:${port}
