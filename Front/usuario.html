@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Byte</title>
+    <link rel="stylesheet" href="Usuario.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* Estilos adicionais podem ser definidos aqui */
+        .container {
+            display: flex;
+            justify-content: space-around;
+        }
+        .usuarios, .clientes {
+            width: 45%;
+        }
+        .usuarios h2, .clientes h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .usuarios ul, .clientes ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .usuarios li, .clientes li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo">MEGA<span>BYTE</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="loja.html">Home</a></li>
+                    <li><a href="Products.html">Produtos</a></li>
+                    <li><a href="ctt.html">Contato</a></li>
+                    <li><a href="usuario.html">Conta</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="images/menu.png" alt="menu" class="menu-button" onclick="toggleMenu()" />
+                <ul class="menu-list" id="menuList">
+                    <li><a href="loja.html">Home</a></li>
+                    <li><a href="Products.html">Produtos</a></li>
+                    <li><a href="ctt.html">Contato</a></li>
+                    <li><a href="usuario.html">Conta</a></li>
+                    <li><a href="login.html">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="usuarios conta">
+            <h2>Usuários</h2>
+            <ul id="listaUsuarios">
+                <!-- Aqui serão inseridos dinamicamente os usuários -->
+            </ul>
+        </div>
+
+        <div class="clientes conta">
+            <h2>Clientes</h2>
+            <ul id="listaClientes">
+                <!-- Aqui serão inseridos dinamicamente os clientes -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Simulação de dados da API
+        const dadosAPI = {
+            usuarios: [
+                { nome: 'João', sobrenome: 'Silva', usuario: 'joao_silva', email: 'joao@example.com', idade: 30, jwt: 'token_jwt_1' },
+                { nome: 'Maria', sobrenome: 'Santos', usuario: 'maria_santos', email: 'maria@example.com', idade: 25, jwt: 'token_jwt_2' },
+                { nome: 'Pedro', sobrenome: 'Souza', usuario: 'pedro_souza', email: 'pedro@example.com', idade: 35, jwt: 'token_jwt_3' }
+            ],
+            clientes: [
+                { nome: 'Ana', sobrenome: 'Costa', usuario: 'ana_costa', email: 'ana@example.com', idade: 28, jwt: 'token_jwt_4' },
+                { nome: 'José', sobrenome: 'Oliveira', usuario: 'jose_oliveira', email: 'jose@example.com', idade: 40, jwt: 'token_jwt_5' }
+            ]
+        };
+
+        // Função para buscar dados da API (simulada)
+        async function buscarDadosDaAPI() {
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve(dadosAPI); /* Simula a resposta da API após um certo
+                     tempo (simulação de assincronia)*/
+                }, 1000); // Simula um tempo de resposta de 1 segundo
+            });
+        }
+
+        // Função para exibir usuários na lista
+        function exibirUsuarios(usuarios) {
+            const listaUsuarios = document.getElementById('listaUsuarios');
+            listaUsuarios.innerHTML = ''; // Limpa o conteúdo atual da lista
+
+            usuarios.forEach(usuario => {
+                const li = document.createElement('li');
+                li.textContent = `${usuario.nome} ${usuario.sobrenome} - Usuário: ${usuario.usuario}, Email: ${usuario.email}, Idade: ${usuario.idade}, JWT: ${usuario.jwt}`;
+                listaUsuarios.appendChild(li);
+            });
+        }
+
+        // Função para exibir clientes na lista
+        function exibirClientes(clientes) {
+            const listaClientes = document.getElementById('listaClientes');
+            listaClientes.innerHTML = ''; // Limpa o conteúdo atual da lista
+
+            clientes.forEach(cliente => {
+                const li = document.createElement('li');
+                li.textContent = `${cliente.nome} ${cliente.sobrenome} - Usuário: ${cliente.usuario}, Email: ${cliente.email}, Idade: ${cliente.idade}, JWT: ${cliente.jwt}`;
+                listaClientes.appendChild(li);
+            });
+        }
+
+        // Chamada das funções ao carregar a página
+        window.onload = async function() {
+            try {
+                const dados = await buscarDadosDaAPI();
+                exibirUsuarios(dados.usuarios);
+                exibirClientes(dados.clientes);
+            } catch (error) {
+                console.error('Erro ao obter os dados da API:', error);
+            }
+        };
+
+        // Função para alternar a exibição do menu
+        function toggleMenu() {
+            var menuList = document.getElementById("menuList");
+            if (menuList.style.display === "block") {
+                menuList.style.display = "none";
+            } else {
+                menuList.style.display = "block";
+            }
+        }
+    </script>
+</body>   
+</html>

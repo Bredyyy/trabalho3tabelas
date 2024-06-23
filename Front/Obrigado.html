@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Byte</title>
+    <link rel="stylesheet" href="global.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo">MEGA<span>BYTE</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="loja.html">Home</a></li>
+                    <li><a href="Products.html">Produtos</a></li>
+                    <li><a href="ctt.html">Contato</a></li>
+                    <li><a href="usuario.html">Conta</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="images/menu.png" alt="menu" class="menu-button" onclick="toggleMenu()" />
+                <ul class="menu-list" id="menuList">
+                    <li><a href="loja.html">Home</a></li>
+                    <li><a href="Products.html">Produtos</a></li>
+                    <li><a href="ctt.html">Contato</a></li>
+                    <li><a href="usuario.html">Conta</a></li>
+                    <li><a href="login.html">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <section class="center">
+        <h2>Obrigado Por Responder!! Tenha um bom dia <3</h2>
+    </section>
+    <script>
+        function toggleMenu() {
+            var menuList = document.getElementById("menuList");
+            if (menuList.style.display === "block") {
+                menuList.style.display = "none";
+            } else {
+                menuList.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

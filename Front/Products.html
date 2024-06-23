@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Byte - Produtos</title>
+    <link rel="stylesheet" href="products.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        .produto {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        .produto h2 {
+            margin-top: 0;
+        }
+        .produto p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="header-inner-content">
+            <h1 class="logo">MEGA<span>BYTE</span></h1>
+            <nav>
+                <ul>
+                    <li><a href="loja.html">Home</a></li>
+                    <li><a href="Products.html">Produtos</a></li>
+                    <li><a href="ctt.html">Contato</a></li>
+                    <li><a href="usuario.html">Conta</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icon-container">
+                <img src="images/menu.png" alt="menu" class="menu-button" onclick="toggleMenu()" />
+                <ul class="menu-list" id="menuList">
+                    <li><a href="loja.html">Home</a></li>
+                    <li><a href="Products.html">Produtos</a></li>
+                    <li><a href="ctt.html">Contato</a></li>
+                    <li><a href="usuario.html">Conta</a></li>
+                    <li><a href="login.html">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="produtos"></div>
+
+    <script>
+        // Produtos fictícios
+        const produtos = [
+            { nome: 'Notebook Dell XPS 15', descricao: 'Notebook potente para profissionais', preco: 4500, data: '2022-05-15' },
+            { nome: 'Smartphone Samsung Galaxy S21', descricao: 'Smartphone top de linha com câmera avançada', preco: 3500, data: '2023-01-10' },
+            { nome: 'Monitor LG UltraWide 34"', descricao: 'Monitor ultrawide para produtividade e entretenimento', preco: 1500, data: '2023-06-25' }
+        ];
+
+        // Função para validar se um produto atende aos critérios
+        function isValidProduto(produto) {
+            const isValidNome = typeof produto.nome === 'string' && produto.nome.trim().length > 0;
+            const isValidDescricao = typeof produto.descricao === 'string' && produto.descricao.trim().length > 0;
+            const isValidPreco = typeof produto.preco === 'number' && produto.preco > 0;
+            const isValidData = isValidDate(produto.data);
+
+            return isValidNome && isValidDescricao && isValidPreco && isValidData;
+        }
+
+        /* Função para verificar se uma data é válida (entre 1 de Janeiro de 
+        2000 até 20 de Junho de 2024)*/
+        function isValidDate(dateString) {
+            const date = new Date(dateString);
+            const minDate = new Date('2000-01-01');
+            const maxDate = new Date('2024-06-20');
+            return date instanceof Date && !isNaN(date) && date >= minDate && date <= maxDate;
+        }
+
+        // Função para exibir os produtos válidos na página
+        function exibirProdutos() {
+            const produtosDiv = document.getElementById('produtos');
+
+            produtos.forEach(produto => {
+                if (isValidProduto(produto)) {
+                    const produtoDiv = document.createElement('div');
+                    produtoDiv.classList.add('produto');
+                    produtoDiv.innerHTML = `
+                        <h2>${produto.nome}</h2>
+                        <p>${produto.descricao}</p>
+                        <p>Preço: R$ ${produto.preco.toFixed(2)}</p>
+                        <p>Data de lançamento: ${produto.data}</p>
+                    `;
+                    produtosDiv.appendChild(produtoDiv);
+                }
+            });
+        }
+
+        // Chama a função para exibir os produtos ao carregar a página
+        exibirProdutos();
+
+        // Função para alternar a exibição do menu
+        function toggleMenu() {
+            var menuList = document.getElementById("menuList");
+            if (menuList.style.display === "block") {
+                menuList.style.display = "none";
+            } else {
+                menuList.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

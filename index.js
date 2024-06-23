@@ -1,33 +1,25 @@
 const express = require('express')
 const app = express()
-const port = 3000
- 
+const port = 3001
+
 //import  express  from 'express'
-import  useControllerCliente  from './controllers/clientesController.js'
-import  useControllerProduto  from './controllers/produtosController.js'
+import { useRouterCliente } from './router/clientesRouter.js';
+import { useRouterProduto } from './router/produtosRouter.js';
+import { useRouterUsuario } from './router/usuariosRouter.js';
 
+ 
 //usando rotas para get, put, delete e post
-app.use('/', useControllerCliente)
-app.use('/', useControllerProduto)
+app.use('/', useRouterCliente);
+app.use('/', useRouterProduto);
+app.use('/', useRouterUsuario);
 
-/*app.get('/', (req, res) => {
-   res.send('get!')
-})
+//tendo ver se é o exporte
+export function useRouterCliente() {
+   console.log('Olá, mundo!');
+ }
 
-app.put('/', (req, res) => {
-   res.send('put!')
-})
-
-app.post('/', (req, res) => {
-   res.send('post')
-})
-
-app.delete('/', (req, res) => {
-   res.send('delete!')
-})*/
-
+//////////////////////////////////////////////////////////////////////////////////
 app.listen(port, () => {
    console.log(`Aplicação exemplo rodando em http://localhost:${port}`)
 })
 
- //Aplicação exemplo rodando em http://localhost:${port}

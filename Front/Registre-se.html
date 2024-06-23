@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Byte</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="registrationForm" action="#" method="post" onsubmit="return validateForm(event)">
+            <h1>Crie sua conta</h1>
+            <div class="input-box">
+                <input type="text" id="name" name="name" placeholder="Nome" maxlength="255" required>
+                <i class='bx bxs-user'></i>
+                <div class="error-message" id="nameError"></div>
+            </div>
+            <div class="input-box">
+                <input type="text" id="surname" name="surname" placeholder="Sobrenome" maxlength="255" required>
+                <i class='bx bxs-user'></i>
+                <div class="error-message" id="surnameError"></div>
+            </div>
+            <div class="input-box">
+                <input type="email" id="email" name="email" placeholder="Email" maxlength="255" required>
+                <i class='bx bxs-envelope'></i>
+                <div class="error-message" id="emailError"></div>
+            </div>
+            <div class="input-box">
+                <input type="number" id="age" name="age" placeholder="Idade" min="1" max="119" required>
+                <i class='bx bxs-user'></i>
+                <div class="error-message" id="ageError"></div>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" name="password" placeholder="Digite sua senha" maxlength="255"
+                    required>
+                <i class='bx bxs-lock-alt' id="togglePassword"></i>
+                <div class="error-message" id="passwordError"></div>
+            </div>
+            <button type="submit" class="btn">Criar Conta</button>
+        </form>
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            togglePassword.classList.toggle('bxs-show');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+        });
+
+        function validateForm(event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            document.querySelectorAll('.input-box').forEach(box => {
+                box.classList.remove('error');
+                box.querySelector('.error-message').innerText = '';
+            });
+
+            // Valida name
+            const nameInput = document.getElementById('name');
+            const name = nameInput.value.trim();
+            if (!isValidName(name)) {
+                document.getElementById('nameError').innerText = 'Digite um nome válido.';
+                nameInput.parentNode.classList.add('error');
+                isValid = false;
+            }
+
+            // Valida surname
+            const surnameInput = document.getElementById('surname');
+            const surname = surnameInput.value.trim();
+            if (!isValidName(surname)) {
+                document.getElementById('surnameError').innerText = 'Digite um sobrenome válido.';
+                surnameInput.parentNode.classList.add('error');
+                isValid = false;
+            }
+
+            // Valida email
+            const emailInput = document.getElementById('email');
+            const email = emailInput.value.trim();
+            if (!isValidEmail(email)) {
+                document.getElementById('emailError').innerText = 'Digite um email válido.';
+                emailInput.parentNode.classList.add('error');
+                isValid = false;
+            }
+
+            // Valida idade
+            const ageInput = document.getElementById('age');
+            const age = parseInt(ageInput.value, 10);
+            if (age <= 0 || age >= 120) {
+                document.getElementById('ageError').innerText = 'Idade deve ser um número positivo e menor que 120.';
+                ageInput.parentNode.classList.add('error');
+                isValid = false;
+            }
+
+            // Valida senha
+            const passwordInput = document.getElementById('password');
+            const password = passwordInput.value;
+            if (!isValidPassword(password)) {
+                document.getElementById('passwordError').innerText = 'Senha deve conter pelo menos uma letra maiúscula e um caractere especial.';
+                passwordInput.parentNode.classList.add('error');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Simular o salvamento dos dados do usuário
+                const userData = {
+                    name: name,
+                    surname: surname,
+                    email: email,
+                    age: age
+                };
+                localStorage.setItem('userData', JSON.stringify(userData));
+                // Redirecionar para loja.html
+                window.location.href = 'loja.html';
+            }
+
+            return false;
+        }
+
+        function isValidName(name) {
+            // Nome deve conter apenas letras e ter entre 3 e 255 caracteres
+            return /^[a-zA-ZÀ-ÿ\s']{3,20}$/.test(name);
+        }
+
+        function isValidEmail(email) {
+            // Verifica se o email tem formato válido
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function isValidPassword(password) {
+            // Senha deve conter pelo menos uma letra maiúscula e um caractere especial
+            return /[A-Z]/.test(password) && /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        }
+    </script>
+</body>
+
+</html>
